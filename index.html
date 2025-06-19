@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>For my sweetest pumpkin marmor🎀</title>
+  <style>
+    body {
+      background: #ffe4e1;
+      color: #b30059;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      text-align: center;
+      padding: 40px 20px;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+    #password-container {
+      margin-top: 40vh;
+    }
+    #password-container input {
+      font-size: 1.2rem;
+      padding: 10px;
+      border-radius: 8px;
+      border: 2px solid #b30059;
+      outline: none;
+      width: 250px;
+      text-align: center;
+      margin-right: 10px;
+    }
+    #password-container button {
+      font-size: 1.2rem;
+      padding: 10px 20px;
+      border-radius: 8px;
+      border: none;
+      background-color: #ff66cc;
+      color: white;
+      cursor: pointer;
+    }
+    #error-message {
+      color: #ff0066;
+      margin-top: 10px;
+      font-weight: bold;
+      display: none;
+    }
+    #content {
+      display: none;
+      max-width: 90vw;
+      margin: 30px auto;
+    }
+    .letter {
+      background: #fff0f5cc;
+      padding: 25px 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(179, 0, 89, 0.3);
+      font-size: 1.2rem;
+      line-height: 1.6;
+      white-space: pre-wrap;
+    }
+    .heart {
+      position: fixed;
+      bottom: 0;
+      animation: floatUpSparkle 5s ease-out forwards;
+      opacity: 0.9;
+      pointer-events: none;
+      font-size: 24px;
+      color: #ff66cc;
+      text-shadow: 0 0 5px #ff66cc, 0 0 10px #ff3399, 0 0 15px #ff1a75;
+      user-select: none;
+    }
+    @keyframes floatUpSparkle {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-400px) scale(1.6);
+        opacity: 0;
+      }
+    }
+    #play-music-btn {
+      padding: 15px 50px;
+      font-size: 1.3rem;
+      border-radius: 25px;
+      background: #ff66cc;
+      color: white;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(255, 102, 204, 0.7);
+      transition: background 0.3s ease;
+      display: none;
+      margin-top: 20px;
+    }
+    #play-music-btn:hover {
+      background: #ff3399;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="password-container">
+    <input type="password" id="password-input" placeholder="Enter password" />
+    <button id="submit-password">Submit</button>
+    <div id="error-message">Wrong password, try again 🥺</div>
+  </div>
+
+  <div id="content">
+    <div class="letter">
+I hope you like this... I just wanted to let you know how much I love you, my love.
+I'm so grateful to have such a beautiful girl like you — you changed my life for the better from the moment you walked in.
+You became my soul, and now you're something I can’t live without.
+
+My love for you grows with every second we talk, with every thought I have of you.
+I thank God every day for sending a sweet, beautiful angel like you into my life.
+
+I love spending time with you, even if it's just through the phone — I truly cherish every moment.
+Inshallah, in a few years, we’ll finally be together in person and get to do all the things we planned.
+
+I want to have some beautiful kids — just like you.
+I can’t imagine life without you.
+I want to spend my whole life with you, under your wings and in your arms.
+
+You became my soul that I can’t live without. When I imagine something, you have to be there — I can’t see a future without you in it. 
+May Allah keep you in my life forever.
+I love you so much, Maria, and I’ll love you until my very last heartbeat.
+    </div>
+
+    <button id="play-music-btn">💖 Play music</button>
+    <audio id="audio-player" src="https://chat.openai.com/mnt/data/love-for-you.mp3"></audio>
+  </div>
+
+  <script>
+    const correctPassword = "misu";
+    const passwordInput = document.getElementById("password-input");
+    const submitBtn = document.getElementById("submit-password");
+    const errorMessage = document.getElementById("error-message");
+    const content = document.getElementById("content");
+    const passwordContainer = document.getElementById("password-container");
+    const playBtn = document.getElementById("play-music-btn");
+    const audio = document.getElementById("audio-player");
+
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.style.left = Math.random() * window.innerWidth + "px";
+      heart.style.animationDuration = (4 + Math.random() * 3) + "s";
+      heart.style.fontSize = (16 + Math.random() * 20) + "px";
+      heart.textContent = "💖";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 5000);
+    }
+
+    function startHearts() {
+      setInterval(createHeart, 300);
+    }
+
+    submitBtn.addEventListener("click", () => {
+      if (passwordInput.value.trim().toLowerCase() === correctPassword) {
+        passwordContainer.style.display = "none";
+        content.style.display = "block";
+        startHearts();
+        playBtn.style.display = "inline-block";
+        errorMessage.style.display = "none";
+      } else {
+        errorMessage.style.display = "block";
+        passwordInput.value = "";
+        passwordInput.focus();
+      }
+    });
+
+    passwordInput.addEventListener("keypress", (e) => {
+      if (e.key === "Enter") {
+        submitBtn.click();
+      }
+    });
+
+    playBtn.addEventListener("click", () => {
+      audio.play();
+      playBtn.style.display = "none";
+    });
+  </script>
+
+</body>
+</html>
